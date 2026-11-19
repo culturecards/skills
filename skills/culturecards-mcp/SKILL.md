@@ -1,5 +1,5 @@
 ---
-name: culturecards-mcp
+name: Culturecards MCP
 description: Install and use the Culturecards MCP server; understand its OAuth setup, tools, and edition content hierarchy including chapter, card, and slide types.
 ---
 

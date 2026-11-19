@@ -1,0 +1,10 @@
+interface:
+  display_name: "Culturecards MCP"
+  short_description: "Install and use Culturecards MCP; understand OAuth, tools, and edition content structure."
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  brand_color: "#9b4dff"
+  default_prompt: "Use this skill to connect to Culturecards MCP or work with editions, chapters, cards, slides, and media."
+
+policy:
+  allow_implicit_invocation: true
