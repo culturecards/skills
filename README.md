@@ -4,19 +4,51 @@ This repository contains agent skills in the [Agent Skills](https://agentskills.
 
 ## Install
 
-Install the a skill from this repository:
+### npm `skills` CLI
+
+Install the skill for all detected supported agents:
 
 ```sh
 npx skills add culturecards/skills --skill culturecards-mcp
 ```
 
-To target particular agents, pass their names with `--agent` (repeat the option as supported by the CLI), for example:
+Or target agents explicitly:
 
 ```sh
-npx skills add culturecards/skills --skill culturecards-mcp --agent codex --agent claude-code --agent opencode --agent pi --agent omp
+npx skills add culturecards/skills --skill culturecards-mcp --agent claude-code --agent codex --agent opencode
 ```
 
-The skill is a portable `SKILL.md`; agents that support the Agent Skills format can also load it using their native skill discovery mechanism.
+### Claude Code
+
+```sh
+npx skills add culturecards/skills --skill culturecards-mcp --agent claude-code
+```
+
+Alternatively, place the skill directory in `~/.claude/skills/culturecards-mcp/` for personal use or `.claude/skills/culturecards-mcp/` in a project. See [Claude Code Skills](https://code.claude.com/docs/en/skills).
+
+### Claude web (claude.ai)
+
+Package the skill directory as a ZIP with `SKILL.md` at the skill folder's root, then upload it in [Customize → Skills](https://claude.ai/customize/skills) and enable it. Claude's web Skills feature requires code execution to be enabled and is available on supported plans. See Anthropic's [guide to creating custom skills](https://support.claude.com/en/articles/12512198-creating-custom-skills).
+
+### Codex
+
+```sh
+npx skills add culturecards/skills --skill culturecards-mcp --agent codex
+```
+
+Codex can also discover skills from its configured skill directories. See [Codex Skills](https://developers.openai.com/codex/skills).
+
+### ChatGPT web
+
+If Skills are available in your ChatGPT workspace, upload a ZIP containing the `culturecards-mcp/` folder (with `SKILL.md` inside it) through the Skills interface, then enable it. Availability and UI labels can vary by plan or workspace. The `agents/openai.yaml` file supplies GPT-specific display metadata; it does not connect an MCP server. For API-based skill upload and use, see OpenAI's [Tools: Skills guide](https://developers.openai.com/api/docs/guides/tools-skills).
+
+### OpenCode
+
+```sh
+npx skills add culturecards/skills --skill culturecards-mcp --agent opencode
+```
+
+The skill is a portable `SKILL.md`; agents that support the Agent Skills format can load it using their native skill discovery mechanism. See [OpenCode skills](https://opencode.ai/docs/skills/).
 
 ## Skill authoring guidance
 
