@@ -79,8 +79,8 @@ Default-slide voices are `ash` (Ben), `misty` (Laura), `rocco` (Mila Winter), an
 ## Safe operating workflow
 
 1. Discover the user's accessible editions with `list_editions`; inspect an edition using `get_edition`.
-2. Read chapter/card/slide data before changing it. `list_cards` requires an explicit `editionId`; it does not use a selected/default edition. `get_slide` requires both card ID and slide ID.
-3. For updates, use the latest `expected_version` from the entity response. For `sort_edition`, use `expected_structural_version` from `get_edition` and send complete affected lists. When moving an item, include both source and destination lists. Both slide types share the same ordered list.
+2. Read chapter/card/slide data before changing it. `list_cards` requires an explicit `editionId`; it does not use a selected/default edition. `get_slide` requires both card ID and slide ID. Before updating a slide, inspect its `type` and use the matching typed tool: `update_default_slide`, `update_video_slide`, or `update_audio_slide`. Do not use one slide-type update tool for another type; follow that tool's live schema for the fields it accepts.
+3. For updates, use the latest `expected_version` from the entity response, including when calling a typed slide update tool. For `sort_edition`, use `expected_structural_version` from `get_edition` and send complete affected lists. When moving an item, include both source and destination lists. All slide types share the same ordered list.
 4. Create parents before children: edition, chapter, card, then slide. Use returned IDs and required parent IDs/order values.
 5. Review changes, then publish through the appropriate Studio/API workflow. Editing a draft does not itself publish it.
 6. Re-read after a version conflict (HTTP 409) and reconcile against current state; never guess version tokens.
@@ -96,7 +96,7 @@ Default-slide voices are `ash` (Ben), `misty` (Laura), `rocco` (Mila Winter), an
 
 ## Available MCP tools
 
-The server exposes tools for media upload (`upload_media`, `upload_media_by_url`), listing/getting/updating editions, chapters, cards, and slides, atomic ordering (`sort_edition`), QR SVG retrieval, TTS regeneration, subtitle generation/upload, media alt-text suggestions, and deletion. Tool names and request schemas can evolve; discover the server's live tools and treat their descriptions and API validation as authoritative. All calls are made as the authenticated caller and remain subject to their permissions.
+The server exposes tools for media upload (`upload_media`, `upload_media_by_url`), listing/getting/updating editions, chapters, and cards, and slide updates split by type (`update_default_slide`, `update_video_slide`, `update_audio_slide`), plus atomic ordering (`sort_edition`), QR SVG retrieval, TTS regeneration, subtitle generation/upload, media alt-text suggestions, and deletion. Tool names and request schemas can evolve; discover the server's live tools and treat their descriptions and API validation as authoritative. All calls are made as the authenticated caller and remain subject to their permissions.
 
 ## Server configuration (operators)
 
